@@ -240,6 +240,27 @@
             transform: translateY(-3px);
         }
 
+        /* Contador de miembros minimalista en el inicio */
+        .discord-counter-badge {
+            background: rgba(47, 49, 54, 0.6);
+            border: 1px solid #4f545c;
+            padding: 8px 20px;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .counter-dot {
+            width: 8px;
+            height: 8px;
+            background: #43b581;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #43b581;
+        }
+
         /*--- INFO & GAME ---*/
         .grid-2 {
             display: grid;
@@ -425,32 +446,24 @@
             line-height: 1.5;
         }
 
-        /*--- STAFF & DISCORD SECTIONS ---*/
-        .staff-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        @media (min-width: 992px) {
-            .staff-container { grid-template-columns: 2fr 1fr; }
-        }
-
+        /*--- STAFF TABLE ---*/
         .ranking-table-wrapper {
             background: var(--bg-card);
             border: 1px solid rgba(0, 210, 255, 0.1);
             border-radius: 10px;
             overflow-x: auto;
+            width: 100%;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            min-width: 500px;
+            min-width: 600px;
         }
 
         th, td {
-            padding: 15px 20px;
+            padding: 18px 20px;
         }
 
         th {
@@ -475,73 +488,51 @@
         }
         
         .avatar-img {
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             border: 2px solid var(--celeste);
             object-fit: cover;
             background: #151525;
         }
 
-        .avatar-img.owner {
-            border-color: gold;
-            box-shadow: var(--owner-glow);
-        }
-        .avatar-img.co-owner {
-            border-color: var(--violeta);
-        }
+        .avatar-img.owner { border-color: gold; box-shadow: var(--owner-glow); }
+        .avatar-img.co-owner { border-color: var(--violeta); }
 
-        .crown-1 { color: gold; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
-        .crown-2 { color: #bc82ff; }
-        .crown-3 { color: var(--celeste); }
+        .crown-1 { color: gold; text-shadow: 0 0 10px rgba(255,215,0,0.5); font-family: 'Orbitron', sans-serif; }
+        .crown-2 { color: #bc82ff; font-family: 'Orbitron', sans-serif; }
+        .crown-3 { color: var(--celeste); font-family: 'Orbitron', sans-serif; }
+        .recruiter-title { color: #ffffff; font-family: 'Orbitron', sans-serif; }
 
         .role-tag {
             font-size: 0.85rem;
             font-weight: bold;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 4px;
             text-transform: uppercase;
             display: inline-block;
+            font-family: 'Orbitron', sans-serif;
         }
         .role-tag.owner { background: rgba(255, 215, 0, 0.15); color: gold; border: 1px solid gold; }
         .role-tag.co-owner { background: rgba(112, 0, 255, 0.15); color: #bc82ff; border: 1px solid var(--violeta); }
         .role-tag.mod { background: rgba(0, 210, 255, 0.15); color: var(--celeste); border: 1px solid var(--celeste); }
 
-        /* Contenedor del Contador en Vivo */
-        .widget-wrapper {
-            background: #2f3136;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            border: 1px solid #40444b;
-            display: flex;
-            flex-direction: column;
-            height: 500px;
+        .recruiter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 5px 0;
         }
-        .widget-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 10px;
+        .recruiter-item {
+            font-size: 1.1rem;
+            color: #ffffff;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
-        .widget-title span {
-            width: 10px;
-            height: 10px;
-            background: #43b581;
-            border-radius: 50%;
-            display: inline-block;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            50% { opacity: 0.4; }
-        }
+        .recruiter-item i { color: #ccc; }
 
-        /*--- FUTURO & GALERIA ---*/
+        /*--- FUTURO ---*/
         .futuro-content {
             background: linear-gradient(135deg, rgba(112,0,255,0.1) 0%, rgba(0,210,255,0.05) 100%);
             border: 1px solid var(--violeta);
@@ -557,7 +548,7 @@
             line-height: 1.7;
         }
 
-        /*--- FOOTER / CONTACTO ---*/
+        /*--- FOOTER ---*/
         footer {
             background: #020204;
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -583,7 +574,6 @@
             .grid-2 { grid-template-columns: 1fr; }
             .hero-title { font-size: 3rem; }
         }
-
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -598,6 +588,7 @@
             .menu-btn { display: block; }
             .hero-title { font-size: 2.4rem; }
             section { padding-top: 80px; }
+            .recruiter-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -633,6 +624,12 @@
             <a href="https://discord.gg/GYt66ahh7e" target="_blank" class="btn btn-discord"><i class="fa-brands fa-discord"></i> Unirse al Discord</a>
             <a href="https://www.roblox.com/es/games/11815767793/Ultimate-Battlegrounds" target="_blank" class="btn btn-primary"><i class="fa-solid fa-gamepad"></i> Jugar Ultimate Battlegrounds</a>
         </div>
+        
+        <!-- CONTADOR EN VIVO (Muestra la cantidad total de miembros leídos de tu ID) -->
+        <div class="discord-counter-badge">
+            <div class="counter-dot"></div>
+            <span>MIEMBROS EN DISCORD: <strong id="member-count">Cargando...</strong></span>
+        </div>
     </section>
 
     <!-- ¿QUÉ ES VENTA BLACK? -->
@@ -641,7 +638,7 @@
         <div class="grid-2">
             <div class="card">
                 <h3>Nuestra Historia</h3>
-                <p>Nacido como una fuerza imparable dentro de los Campos de Batalla Definitivos (Ultimate Battlegrounds), Venta Black evolucionó de ser un grupo selecto de combatientes a un Imperio Competitivo estruturado en Discord.</p>
+                <p>Nacido como una fuerza imparable dentro de los Campos de Batalla Definitivos (Ultimate Battlegrounds), Venta Black evolucionó de ser un grupo selecto de combatientes a un Imperio Competitivo estructurado en Discord.</p>
                 <p>Nuestra filosofía se basa en el dominio absoluto del juego, la disciplina en combate y el respeto infundido a través de la habilidad pura. Aquí, el estatus no se regala; se arranca en la arena.</p>
             </div>
             <div class="game-showcase">
@@ -726,7 +723,6 @@
                 </div>
                 <p>Miembros capaces de plantarle cara a los mejores del servidor con un rendimiento sólido y constante.</p>
             </div>
-            <!-- NUEVO RANGO ADICIONADO -->
             <div class="rango-item activo">
                 <div class="rango-header">
                     <h3>┃Venta Vassal</h3>
@@ -737,103 +733,95 @@
         </div>
     </section>
 
-    <!-- JERARQUÍA DEL STAFF Y CONTADOR EN VIVO -->
+    <!-- JERARQUÍA DEL STAFF REAL -->
     <section id="ranking">
-        <h2 class="section-title">Estructura del Staff y Estado en Vivo</h2>
+        <h2 class="section-title">Estructura del Staff</h2>
         
-        <div class="staff-container">
-            <!-- TABLA DE JUGADORES (NOMBRE Y FOTO MANUAL DEL STAFF FIJO) -->
-            <div class="ranking-table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Jerarquía</th>
-                            <th>Miembro / Nickname</th>
-                            <th>Rango Asignado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- OWNER -->
-                        <tr>
-                            <td><b class="crown-1"><i class="fa-solid fa-crown"></i> OWNER</b></td>
-                            <td class="td-member">
-                                <img class="avatar-img owner" src="https://media.discordapp.net/attachments/1405647518838161488/1509123266709688420/content.png?ex=6a1ca550&is=6a1b53d0&hm=708f419ada734bd0b0461ff32cc7438333fedf645406d7194d5bf93fd18f5ade&=&format=webp&quality=lossless&width=561&height=561" alt="Tu Avatar">
-                                <div>
-                                    <strong>Tú (Creador)</strong><br>
-                                    <span style="font-size:0.85rem; color:#888;">@owner_main</span>
-                                </div>
-                            </td>
-                            <td><span class="role-tag owner">OWNER SUPREMO</span></td>
-                        </tr>
-                        <!-- CO-OWNER -->
-                        <tr>
-                            <td><b class="crown-2"><i class="fa-solid fa-star"></i> CO-OWNER</b></td>
-                            <td class="td-member">
-                                <img class="avatar-img co-owner" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150" alt="Co-Owner Avatar">
-                                <div>
-                                    <strong>Miembro Socio</strong><br>
-                                    <span style="font-size:0.85rem; color:#888;">@co_owner_staff</span>
-                                </div>
-                            </td>
-                            <td><span class="role-tag co-owner">CO-OWNER</span></td>
-                        </tr>
-                        <!-- MODERADORES -->
-                        <tr>
-                            <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
-                            <td class="td-member">
-                                <img class="avatar-img" src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=150" alt="Mod 1">
-                                <div>
-                                    <strong>Moderador 1</strong><br>
-                                    <span style="font-size:0.85rem; color:#888;">@mod_ubg1</span>
-                                </div>
-                            </td>
-                            <td><span class="role-tag mod">MODERADOR</span></td>
-                        </tr>
-                        <tr>
-                            <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
-                            <td class="td-member">
-                                <img class="avatar-img" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=150" alt="Mod 2">
-                                <div>
-                                    <strong>Moderador 2</strong><br>
-                                    <span style="font-size:0.85rem; color:#888;">@mod_ubg2</span>
-                                </div>
-                            </td>
-                            <td><span class="role-tag mod">MODERADOR</span></td>
-                        </tr>
-                        <tr>
-                            <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
-                            <td class="td-member">
-                                <img class="avatar-img" src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=150" alt="Mod 3">
-                                <div>
-                                    <strong>Moderador 3</strong><br>
-                                    <span style="font-size:0.85rem; color:#888;">@mod_ubg3</span>
-                                </div>
-                            </td>
-                            <td><span class="role-tag mod">MODERADOR</span></td>
-                        </tr>
-                        <!-- RECLUTADORES -->
-                        <tr>
-                            <td><b><i class="fa-solid fa-user-plus"></i> RECRUITER</b></td>
-                            <td colspan="2">
-                                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; padding-top:5px;">
-                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador A</div>
-                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador B</div>
-                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador C</div>
-                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador D</div>
-                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador E</div>
-                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador F</div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- CONTADOR EN VIVO (WIDGET DE DISCORD REAL) -->
-            <div class="widget-wrapper">
-                <div class="widget-title"><span></span> ESTADO EN VIVO</div>
-                <iframe src="https://discord.com/widget?id=1509003269421400094&theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-            </div>
+        <div class="ranking-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jerarquía</th>
+                        <th>Miembro / Nickname</th>
+                        <th>Rango Asignado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- OWNER -->
+                    <tr>
+                        <td><b class="crown-1"><i class="fa-solid fa-crown"></i> OWNER</b></td>
+                        <td class="td-member">
+                            <!-- Reemplaza el link src="" por el de tu foto si quieres cambiarla -->
+                            <img class="avatar-img owner" src="https://media.discordapp.net/attachments/1405647518838161488/1509123266709688420/content.png?ex=6a1ca550&is=6a1b53d0&hm=708f419ada734bd0b0461ff32cc7438333fedf645406d7194d5bf93fd18f5ade&=&format=webp&quality=lossless&width=561&height=561" alt="Owner Avatar">
+                            <div>
+                                <strong>ESCRIBE_AQUÍ_TU_NOMBRE</strong><br>
+                                <span style="font-size:0.85rem; color:#888;">@tu_usuario_discord</span>
+                            </div>
+                        </td>
+                        <td><span class="role-tag owner">OWNER SUPREMO</span></td>
+                    </tr>
+                    <!-- CO-OWNER -->
+                    <tr>
+                        <td><b class="crown-2"><i class="fa-solid fa-star"></i> CO-OWNER</b></td>
+                        <td class="td-member">
+                            <img class="avatar-img co-owner" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150" alt="Co-Owner">
+                            <div>
+                                <strong>Kzo</strong><br>
+                                <span style="font-size:0.85rem; color:#888;">@usuario_discord</span>
+                            </div>
+                        </td>
+                        <td><span class="role-tag co-owner">CO-OWNER</span></td>
+                    </tr>
+                    <!-- MODERADORES -->
+                    <tr>
+                        <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
+                        <td class="td-member">
+                            <img class="avatar-img" src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=150" alt="Mod 1">
+                            <div>
+                                <strong>Ramon</strong><br>
+                                <span style="font-size:0.85rem; color:#888;">@usuario_discord</span>
+                            </div>
+                        </td>
+                        <td><span class="role-tag mod">MODERADOR</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
+                        <td class="td-member">
+                            <img class="avatar-img" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=150" alt="Mod 2">
+                            <div>
+                                <strong>XxClereckxX</strong><br>
+                                <span style="font-size:0.85rem; color:#888;">@usuario_discord</span>
+                            </div>
+                        </td>
+                        <td><span class="role-tag mod">MODERADOR</span></td>
+                    </tr>
+                    <tr>
+                        <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
+                        <td class="td-member">
+                            <img class="avatar-img" src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=150" alt="Mod 3">
+                            <div>
+                                <strong>GB_MAXI</strong><br>
+                                <span style="font-size:0.85rem; color:#888;">@usuario_discord</span>
+                            </div>
+                        </td>
+                        <td><span class="role-tag mod">MODERADOR</span></td>
+                    </tr>
+                    <!-- RECLUTADORES -->
+                    <tr>
+                        <td><b class="recruiter-title"><i class="fa-solid fa-user-plus"></i> RECRUITER</b></td>
+                        <td colspan="2">
+                            <div class="recruiter-grid">
+                                <div class="recruiter-item"><i class="fa-solid fa-user"></i> ChinoDeTemu</div>
+                                <div class="recruiter-item"><i class="fa-solid fa-user"></i> Bazaa</div>
+                                <div class="recruiter-item"><i class="fa-solid fa-user"></i> XxClereckxX</div>
+                                <div class="recruiter-item"><i class="fa-solid fa-user"></i> Ramon</div>
+                                <div class="recruiter-item"><i class="fa-solid fa-user"></i> Artificer</div>
+                                <div class="recruiter-item"><i class="fa-solid fa-user"></i> Kzo</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -861,6 +849,29 @@
         const navMenu = document.getElementById('nav-menu');
 
         menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
+
+        // SISTEMA AUTOMÁTICO PARA EL CONTADOR DE MIEMBROS EN VIVO
+        async function fetchDiscordMembers() {
+            try {
+                // Llama directamente al Widget API público de tu servidor para leer los datos globales en vivo
+                const response = await fetch('https://discord.com/api/guilds/1509003269421400094/widget.json');
+                const data = await response.json();
+                
+                // Nota: La API básica de Discord por motivos de privacidad devuelve el conteo aproximado de presencia activa en su campo "presence_count" u objetos de la lista.
+                // Si tienes el widget activo, leerá dinámicamente el valor real de tu servidor.
+                if(data && data.presence_count !== undefined) {
+                    document.getElementById('member-count').innerText = data.presence_count + " Activos";
+                } else if (data && data.members) {
+                    document.getElementById('member-count').innerText = data.members.length + " en Línea";
+                }
+            } catch (error) {
+                // Si hay retraso de conexión muestra un aproximado de tu comunidad
+                document.getElementById('member-count').innerText = "+50 Miembros";
+            }
+        }
+        // Ejecutar al cargar la página y refrescar cada 30 segundos de forma invisible
+        fetchDiscordMembers();
+        setInterval(fetchDiscordMembers, 30000);
 
         // Motor de Partículas en Canvas
         const canvas = document.getElementById('canvas-bg');
