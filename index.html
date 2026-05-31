@@ -393,6 +393,9 @@
         .rango-item.alto { border-color: var(--celeste); }
         .rango-item.alto h3 { color: var(--celeste) !important; }
 
+        .rango-item.activo { border-color: #39ff14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.1); }
+        .rango-item.activo h3 { color: #39ff14 !important; }
+
         .rango-header {
             display: flex;
             justify-content: space-between;
@@ -422,20 +425,28 @@
             line-height: 1.5;
         }
 
-        /*--- RANKING & METRICAS ---*/
+        /*--- STAFF & DISCORD SECTIONS ---*/
+        .staff-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        @media (min-width: 992px) {
+            .staff-container { grid-template-columns: 2fr 1fr; }
+        }
+
         .ranking-table-wrapper {
             background: var(--bg-card);
             border: 1px solid rgba(0, 210, 255, 0.1);
             border-radius: 10px;
             overflow-x: auto;
-            margin-bottom: 50px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            min-width: 600px;
+            min-width: 500px;
         }
 
         th, td {
@@ -457,60 +468,77 @@
         }
         tr:hover { background: rgba(255,255,255,0.02); }
 
-        .td-flex {
+        .td-member {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
         
-        /* Imagen de Perfil del Owner en la Tabla */
-        .owner-avatar {
+        .avatar-img {
             width: 45px;
             height: 45px;
             border-radius: 50%;
             border: 2px solid var(--celeste);
-            box-shadow: var(--owner-glow);
             object-fit: cover;
+            background: #151525;
+        }
+
+        .avatar-img.owner {
+            border-color: gold;
+            box-shadow: var(--owner-glow);
+        }
+        .avatar-img.co-owner {
+            border-color: var(--violeta);
         }
 
         .crown-1 { color: gold; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
-        .crown-2 { color: silver; }
-        .crown-3 { color: #cd7f32; }
+        .crown-2 { color: #bc82ff; }
+        .crown-3 { color: var(--celeste); }
 
-        .id-badge {
-            font-family: monospace;
-            font-size: 0.8rem;
-            background: rgba(255,255,255,0.07);
-            padding: 2px 6px;
+        .role-tag {
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 4px 10px;
             border-radius: 4px;
-            color: #aaa;
-        }
-
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .stat-box {
-            background: rgba(10,10,15,0.6);
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .stat-box div {
-            font-size: 2.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            color: var(--celeste);
-            text-shadow: var(--text-glow);
-            margin-bottom: 5px;
-        }
-        .stat-box p {
-            font-size: 0.9rem;
             text-transform: uppercase;
-            color: #888;
-            letter-spacing: 1px;
+            display: inline-block;
+        }
+        .role-tag.owner { background: rgba(255, 215, 0, 0.15); color: gold; border: 1px solid gold; }
+        .role-tag.co-owner { background: rgba(112, 0, 255, 0.15); color: #bc82ff; border: 1px solid var(--violeta); }
+        .role-tag.mod { background: rgba(0, 210, 255, 0.15); color: var(--celeste); border: 1px solid var(--celeste); }
+
+        /* Contenedor del Contador en Vivo */
+        .widget-wrapper {
+            background: #2f3136;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid #40444b;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        .widget-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .widget-title span {
+            width: 10px;
+            height: 10px;
+            background: #43b581;
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0.4; }
         }
 
         /*--- FUTURO & GALERIA ---*/
@@ -528,25 +556,6 @@
             color: #e1e1e6;
             line-height: 1.7;
         }
-
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 40px;
-        }
-        .galeria-item {
-            height: 180px;
-            background: #151520;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-        }
-        .galeria-item img {
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.3s;
-        }
-        .galeria-item:hover img { opacity: 1; transform: scale(1.05); }
 
         /*--- FOOTER / CONTACTO ---*/
         footer {
@@ -594,7 +603,6 @@
 </head>
 <body>
 
-    <!-- Fondo de Estrellas/Partículas Interactivas -->
     <canvas id="canvas-bg"></canvas>
 
     <!-- BARRA DE NAVEGACIÓN -->
@@ -633,7 +641,7 @@
         <div class="grid-2">
             <div class="card">
                 <h3>Nuestra Historia</h3>
-                <p>Nacido como una fuerza imparable dentro de los Campos de Batalla Definitivos (Ultimate Battlegrounds), Venta Black evolucionó de ser un grupo selecto de combatientes a un Imperio Competitivo estructurado en Discord.</p>
+                <p>Nacido como una fuerza imparable dentro de los Campos de Batalla Definitivos (Ultimate Battlegrounds), Venta Black evolucionó de ser un grupo selecto de combatientes a un Imperio Competitivo estruturado en Discord.</p>
                 <p>Nuestra filosofía se basa en el dominio absoluto del juego, la disciplina en combate y el respeto infundido a través de la habilidad pura. Aquí, el estatus no se regala; se arranca en la arena.</p>
             </div>
             <div class="game-showcase">
@@ -646,15 +654,13 @@
         </div>
     </section>
 
-    <!-- SISTEMA DE RECLUTAMIENTO -->
+    <!-- RECLUTAMIENTO -->
     <section id="reclutamiento">
         <h2 class="section-title">Sistema de Reclutamiento</h2>
-        
         <div class="alert-box">
             <i class="fa-solid fa-circle-exclamation"></i> 
             <strong>BLOQUEO DE SQUAD INTERNO:</strong> El reclutamiento dentro del juego SOLO está disponible las primeras 2 semanas de cada mes. ¡Luego el botón de ADD se bloquea!
         </div>
-
         <div class="steps-container">
             <div class="step-card">
                 <span class="step-num">01</span>
@@ -688,187 +694,145 @@
         </div>
     </section>
 
-    <!-- RANGOS DE JUGABILIDAD -->
+    <!-- RANGOS -->
     <section id="rangos">
         <h2 class="section-title">Rangos de Jugabilidad</h2>
         <div class="rangos-grid">
-            
             <div class="rango-item supremo">
                 <div class="rango-header">
                     <h3>┃Black Sovereign</h3>
                     <span class="rango-badge" style="color:gold;">Supremo</span>
                 </div>
-                <p>Reservado únicamente para los jugadores más excepcionales de toda la comunidad. Poseen un dominio inigualable, son leyendas vivientes dentro del clan e inspiran respeto absoluto. Su rendimiento supera incluso a la élite del servidor.</p>
+                <p>Reservado únicamente para los jugadores más excepcionales de toda la comunidad. Poseen un dominio inigualable y su rendimiento supera incluso a la élite del servidor.</p>
             </div>
-
             <div class="rango-item elite">
                 <div class="rango-header">
                     <h3>┃Void Emperor</h3>
                     <span class="rango-badge" style="color:#bc82ff;">Élite Absoluta</span>
                 </div>
-                <p>Jugadores con un dominio extraordinario de Ultimate Battlegrounds. Destacan por reflejos excepcionales, control del combate y adaptación perfecta. Candidatos naturales al rango supremo.</p>
+                <p>Jugadores con un dominio extraordinario de Ultimate Battlegrounds. Destacan por reflejos excepcionales, control del combate y adaptación perfecta.</p>
             </div>
-
             <div class="rango-item elite">
                 <div class="rango-header">
                     <h3>┃Venta King</h3>
                     <span class="rango-badge">Dominante</span>
                 </div>
-                <p>Representa a los combatientes más peligrosos y experimentados. Rendimiento sobresaliente y un dominio casi completo del combate tras incontables batallas ganadas en la arena.</p>
+                <p>Representa a los combatientes más peligrosos y experimentados. Rendimiento sobresaliente y un dominio casi completo del combate.</p>
             </div>
-
             <div class="rango-item alto">
                 <div class="rango-header">
                     <h3>┃Shadow Champion</h3>
                     <span class="rango-badge">Competitivo Alto</span>
                 </div>
-                <p>Miembros capaces de plantarle cara a los mejores del servidor con un rendimiento sólido y constante. Destacan por su presión en combate, inteligencia y excelente control de personaje.</p>
+                <p>Miembros capaces de plantarle cara a los mejores del servidor con un rendimiento sólido y constante.</p>
             </div>
-
-            <div class="rango-item alto">
+            <!-- NUEVO RANGO ADICIONADO -->
+            <div class="rango-item activo">
                 <div class="rango-header">
                     <h3>┃Venta Vassal</h3>
-                    <span class="rango-badge">Guerrero Fuerte</span>
+                    <span class="rango-badge" style="color:#39ff14;">Activo e Integrado</span>
                 </div>
-                <p>Jugadores muy activos y peligrosos en PvP. Destacan por su agresividad, experiencia y consistencia en batallas de clanes. Una seria amenaza para cualquiera.</p>
+                <p>Rango para jugadores fuertes, algo experimentados pero principalmente activos, participando en eventos, interactuando en el servidor y demostrando compromiso con Venta Black.</p>
             </div>
-
-            <div class="rango-item">
-                <div class="rango-header">
-                    <h3>┃Fallen Soldier</h3>
-                    <span class="rango-badge">Experimentado</span>
-                </div>
-                <p>Conocimiento avanzado de mecánicas, buena adaptación y entendimiento general de los combates. Mantienen un rendimiento estable, confiable y maduro bajo presión.</p>
-            </div>
-
-            <div class="rango-item">
-                <div class="rango-header">
-                    <h3>┃Dark Warrior</h3>
-                    <span class="rango-badge">Sólido</span>
-                </div>
-                <p>Nivel claramente superior al promedio general. Jugadores con control en combate, reflejos aceptables y conocimiento óptimo de combos estructurados.</p>
-            </div>
-
-            <div class="rango-item">
-                <div class="rango-header">
-                    <h3>┃Fallen Fighter</h3>
-                    <span class="rango-badge">Promedio +</span>
-                </div>
-                <p>Entienden correctamente todas las bases del combate. Cuentan con un nivel ligeramente superior al jugador común y demuestran un gran potencial para seguir escalando.</p>
-            </div>
-
-            <div class="rango-item" style="opacity: 0.7;">
-                <div class="rango-header">
-                    <h3>┃Venta Recruit</h3>
-                    <span class="rango-badge">Inicio</span>
-                </div>
-                <p>Nivel inicial para nuevos miembros o aspirantes que acaban de ingresar a la Sala de Espera y no han sido evaluados completamente por el Staff.</p>
-            </div>
-
         </div>
     </section>
 
-    <!-- RANKING DE ROLES DE STAFF -->
+    <!-- JERARQUÍA DEL STAFF Y CONTADOR EN VIVO -->
     <section id="ranking">
-        <h2 class="section-title">Jerarquía del Staff</h2>
+        <h2 class="section-title">Estructura del Staff y Estado en Vivo</h2>
         
-        <div class="ranking-table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Jerarquía</th>
-                        <th>Miembro / ID de Usuario</th>
-                        <th>Rol Asignado</th>
-                        <th>ID del Rol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- OWNER -->
-                    <tr>
-                        <td><b class="crown-1"><i class="fa-solid fa-crown"></i> OWNER</b></td>
-                        <td class="td-flex">
-                            <img class="owner-avatar" src="https://media.discordapp.net/attachments/1405647518838161488/1509123266709688420/content.png?ex=6a1ca550&is=6a1b53d0&hm=708f419ada734bd0b0461ff32cc7438333fedf645406d7194d5bf93fd18f5ade&=&format=webp&quality=lossless&width=561&height=561" alt="Owner Profile">
-                            <div>
-                                <strong>Tú (Creador)</strong><br>
-                                <span class="id-badge">1405575444283003022</span>
-                            </div>
-                        </td>
-                        <td style="color:gold; font-weight:bold;">OWNER</td>
-                        <td><span class="id-badge">1509006629159436348</span></td>
-                    </tr>
-                    <!-- CO-OWNER -->
-                    <tr>
-                        <td><b class="crown-2"><i class="fa-solid fa-star"></i> CO-OWNER</b></td>
-                        <td>
-                            <strong>Amigo / Socio</strong><br>
-                            <span class="id-badge">1299084580028153899</span>
-                        </td>
-                        <td style="color:#bc82ff; font-weight:bold;">CO-OWNER</td>
-                        <td><span class="id-badge">1509015065062408314</span></td>
-                    </tr>
-                    <!-- MODERADORES -->
-                    <tr>
-                        <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
-                        <td>
-                            <strong>Moderador 1</strong><br>
-                            <span class="id-badge">1488119094552297602</span>
-                        </td>
-                        <td style="color:var(--celeste);">MODERADOR</td>
-                        <td><span class="id-badge">1509015065062408314</span></td>
-                    </tr>
-                    <tr>
-                        <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
-                        <td>
-                            <strong>Moderador 2</strong><br>
-                            <span class="id-badge">1051393419857100830</span>
-                        </td>
-                        <td style="color:var(--celeste);">MODERADOR</td>
-                        <td><span class="id-badge">1509015065062408314</span></td>
-                    </tr>
-                    <tr>
-                        <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
-                        <td>
-                            <strong>Moderador 3</strong><br>
-                            <span class="id-badge">1238973234955812995</span>
-                        </td>
-                        <td style="color:var(--celeste);">MODERADOR</td>
-                        <td><span class="id-badge">1509015065062408314</span></td>
-                    </tr>
-                    <!-- RECLUTADORES -->
-                    <tr>
-                        <td><b><i class="fa-solid fa-user-plus"></i> RECRUITER</b></td>
-                        <td>
-                            <div style="display:grid; gap:4px;">
-                                <span>Lista de IDs Autorizados:</span>
-                                <span class="id-badge">1343386574338920458</span>
-                                <span class="id-badge">1421490781507551283</span>
-                                <span class="id-badge">1405575444283003022</span>
-                                <span class="id-badge">1243304727945547777</span>
-                                <span class="id-badge">1363507159236743359</span>
-                                <span class="id-badge">1051393419857100830</span>
-                                <span class="id-badge">1509354411904991252</span>
-                                <span class="id-badge">1238973234955812995</span>
-                            </div>
-                        </td>
-                        <td style="color:#888;">RECLUTADOR</td>
-                        <td><span class="id-badge">1509280495467364514</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="staff-container">
+            <!-- TABLA DE JUGADORES (NOMBRE Y FOTO MANUAL DEL STAFF FIJO) -->
+            <div class="ranking-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Jerarquía</th>
+                            <th>Miembro / Nickname</th>
+                            <th>Rango Asignado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- OWNER -->
+                        <tr>
+                            <td><b class="crown-1"><i class="fa-solid fa-crown"></i> OWNER</b></td>
+                            <td class="td-member">
+                                <img class="avatar-img owner" src="https://media.discordapp.net/attachments/1405647518838161488/1509123266709688420/content.png?ex=6a1ca550&is=6a1b53d0&hm=708f419ada734bd0b0461ff32cc7438333fedf645406d7194d5bf93fd18f5ade&=&format=webp&quality=lossless&width=561&height=561" alt="Tu Avatar">
+                                <div>
+                                    <strong>Tú (Creador)</strong><br>
+                                    <span style="font-size:0.85rem; color:#888;">@owner_main</span>
+                                </div>
+                            </td>
+                            <td><span class="role-tag owner">OWNER SUPREMO</span></td>
+                        </tr>
+                        <!-- CO-OWNER -->
+                        <tr>
+                            <td><b class="crown-2"><i class="fa-solid fa-star"></i> CO-OWNER</b></td>
+                            <td class="td-member">
+                                <img class="avatar-img co-owner" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150" alt="Co-Owner Avatar">
+                                <div>
+                                    <strong>Miembro Socio</strong><br>
+                                    <span style="font-size:0.85rem; color:#888;">@co_owner_staff</span>
+                                </div>
+                            </td>
+                            <td><span class="role-tag co-owner">CO-OWNER</span></td>
+                        </tr>
+                        <!-- MODERADORES -->
+                        <tr>
+                            <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
+                            <td class="td-member">
+                                <img class="avatar-img" src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=150" alt="Mod 1">
+                                <div>
+                                    <strong>Moderador 1</strong><br>
+                                    <span style="font-size:0.85rem; color:#888;">@mod_ubg1</span>
+                                </div>
+                            </td>
+                            <td><span class="role-tag mod">MODERADOR</span></td>
+                        </tr>
+                        <tr>
+                            <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
+                            <td class="td-member">
+                                <img class="avatar-img" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=150" alt="Mod 2">
+                                <div>
+                                    <strong>Moderador 2</strong><br>
+                                    <span style="font-size:0.85rem; color:#888;">@mod_ubg2</span>
+                                </div>
+                            </td>
+                            <td><span class="role-tag mod">MODERADOR</span></td>
+                        </tr>
+                        <tr>
+                            <td><b class="crown-3"><i class="fa-solid fa-shield-halved"></i> MOD</b></td>
+                            <td class="td-member">
+                                <img class="avatar-img" src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=150" alt="Mod 3">
+                                <div>
+                                    <strong>Moderador 3</strong><br>
+                                    <span style="font-size:0.85rem; color:#888;">@mod_ubg3</span>
+                                </div>
+                            </td>
+                            <td><span class="role-tag mod">MODERADOR</span></td>
+                        </tr>
+                        <!-- RECLUTADORES -->
+                        <tr>
+                            <td><b><i class="fa-solid fa-user-plus"></i> RECRUITER</b></td>
+                            <td colspan="2">
+                                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; padding-top:5px;">
+                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador A</div>
+                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador B</div>
+                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador C</div>
+                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador D</div>
+                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador E</div>
+                                    <div style="font-size:0.9rem;"><i class="fa-solid fa-user"></i> Reclutador F</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="stats-row">
-            <div class="stat-box">
-                <div>Server ID</div>
-                <p class="id-badge" style="margin-top:5px;">1509003269421400094</p>
-            </div>
-            <div class="stat-box">
-                <div>Top 1</div>
-                <p>Meta del Servidor</p>
-            </div>
-            <div class="stat-box">
-                <div>2 Semanas</div>
-                <p>De Reclutamiento Mensual</p>
+            <!-- CONTADOR EN VIVO (WIDGET DE DISCORD REAL) -->
+            <div class="widget-wrapper">
+                <div class="widget-title"><span></span> ESTADO EN VIVO</div>
+                <iframe src="https://discord.com/widget?id=1509003269421400094&theme=dark" width="100%" height="100%" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
             </div>
         </div>
     </section>
@@ -877,16 +841,10 @@
     <section id="futuro">
         <h2 class="section-title">Objetivos y Futuro</h2>
         <div class="futuro-content">
-            <p>Nuestra meta inmediata es consolidar a <strong>Venta Black</strong> como el clan más masivo, respetado y temido de todo Ultimate Battlegrounds. No nos detendremos ahí: planeamos expandir nuestras divisiones competitivas hacia otros Battlegrounds de alto calibre dentro de la plataforma de Roblox, manteniendo siempre los mismos estándares absurdamente altos de reclutamiento.</p>
+            <p>Nuestra meta inmediata es consolidar a <strong>Venta Black</strong> como el clan más masivo, respetado y temido de todo Ultimate Battlegrounds.</p>
             <div class="hero-buttons">
                 <a href="#reclutamiento" class="btn btn-primary">Iniciar tu Evaluación</a>
             </div>
-        </div>
-
-        <div class="galeria-grid">
-            <div class="galeria-item"><img src="https://media.discordapp.net/attachments/1406974402389606472/1509031459183132692/9k.png?ex=6a1cf890&is=6a1ba710&hm=6dfabe6d617625d6d16f5247ad038d2799fe1a4e0d1662d592a1eccb0432247a&=&format=webp&quality=lossless" alt="Captura 1"></div>
-            <div class="galeria-item"><img src="https://media.discordapp.net/attachments/1406974402389606472/1509031459183132692/9k.png?ex=6a1cf890&is=6a1ba710&hm=6dfabe6d617625d6d16f5247ad038d2799fe1a4e0d1662d592a1eccb0432247a&=&format=webp&quality=lossless" alt="Captura 2"></div>
-            <div class="galeria-item"><img src="https://media.discordapp.net/attachments/1406974402389606472/1509031459183132692/9k.png?ex=6a1cf890&is=6a1ba710&hm=6dfabe6d617625d6d16f5247ad038d2799fe1a4e0d1662d592a1eccb0432247a&=&format=webp&quality=lossless" alt="Captura 3"></div>
         </div>
     </section>
 
@@ -894,38 +852,21 @@
     <footer id="contacto">
         <div class="footer-socials">
             <a href="https://discord.gg/GYt66ahh7e" target="_blank" class="social-icon"><i class="fa-brands fa-discord"></i></a>
-            <a href="https://www.roblox.com/es/games/11815767793/Ultimate-Battlegrounds" target="_blank" class="social-icon"><i class="fa-solid fa-gamepad"></i></a>
         </div>
-        <p>&copy; 2026 VENTA BLACK CLAN. Todos los derechos reservados. Diseñado bajo Estructura de Desarrollo Avanzada.</p>
+        <p>&copy; 2026 VENTA BLACK CLAN. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- INTERACTIVE BACKGROUND SCRIPT -->
     <script>
-        // Lógica de Menú Responsivo Móvil
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        menuToggle.addEventListener('click', () => { navMenu.classList.toggle('active'); });
 
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Motor de Partículas en Canvas para el Fondo de la Galaxia
+        // Motor de Partículas en Canvas
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
-
         let particles = [];
-        const numParticles = 80;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
@@ -936,75 +877,25 @@
                 this.size = Math.random() * 2 + 0.5;
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.3;
-                const colors = ['#007799', '#7000ff', '#00d2ff', '#ffffff'];
-                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.color = ['#007799', '#7000ff', '#00d2ff', '#ffffff'][Math.floor(Math.random() * 4)];
             }
-
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
             }
-
             draw() {
                 ctx.fillStyle = this.color;
-                ctx.shadowBlur = this.size * 2;
-                ctx.shadowColor = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < numParticles; i++) {
-                particles.push(new Particle());
-            }
-        }
-
+        for (let i = 0; i < 80; i++) particles.push(new Particle());
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            let gradient = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 10, canvas.width/2, canvas.height/2, canvas.width);
-            gradient.addColorStop(0, '#0b001a');
-            gradient.addColorStop(1, '#050508');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animate);
         }
-
-        initParticles();
         animate();
-
-        // Resaltar navegación activa on Scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
     </script>
 </body>
 </html>
